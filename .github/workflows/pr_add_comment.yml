@@ -19,7 +19,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
-        ISSUE_PAYLOAD: ${{ toJson(github.event.issue) }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       if: github.event.issue.pull_request
       run: |
