@@ -16,7 +16,7 @@ jobs:
         echo running on branch ${GITHUB_REF##*/}
     - name: Create comment
       run: |
-        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+        git fetch --no-tags --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         echo ${GITHUB_SHA}
         echo `git name-rev --refs ${GITHUB_SHA}`
         echo "PR add commit" >> comments
