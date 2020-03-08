@@ -18,10 +18,12 @@ jobs:
     - name: Post comment
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        URL: ${{ github.event.pull_request.comments_url }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+        ISSUE_PAYLOAD: ${{ toJson(github.event.issue) }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
       if: github.event.issue.pull_request
       run: |
         curl -X POST \
              -H "Authorization: token ${GITHUB_TOKEN}" \
              -d "{\"body\": \"$(cat comments)\"}" \
-             ${URL}
+             https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}
