@@ -9,11 +9,10 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
     - name: Branch name
-      run: echo running on branch ${GITHUB_REF##*/}
+      run: |
+        echo ${GITHUB_REF}
+        echo running on branch ${GITHUB_REF##*/}
     - name: Create comment
       run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
