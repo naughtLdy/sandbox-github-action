@@ -9,9 +9,11 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Create comment
       run: |
         echo "PR Opened" >> comments
+        echo "branch name : `git symbolic-ref --short HEAD`" >> comments
         sed -i -z 's/\n/\\n/g' comments
 
     - name: Post comment
