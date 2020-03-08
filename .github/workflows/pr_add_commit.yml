@@ -16,6 +16,8 @@ jobs:
       run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         git branch
+        git log
+        git reset --soft HEAD^
         git symbolic-ref --short HEAD
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
