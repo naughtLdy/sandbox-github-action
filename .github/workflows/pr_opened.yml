@@ -9,9 +9,16 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Create comment
+      env:
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
+        git fetch --no-tags --depth=1 origin
+        HASH_AND_BRANCH=`git name-rev ${PR_HEAD_SHA}`
+        BRANCH=`echo "${HASH_AND_BRANCH##*remotes/origin/}"`
         echo "PR Opened" >> comments
+        echo "Branch name: ${BRANCH}" >> comments
         sed -i -z 's/\n/\\n/g' comments
 
     - name: Post comment
