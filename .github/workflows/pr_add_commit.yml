@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: Create comment
       run: |
+        echo "pr_add_commit" >> comments
         echo "PR Comment 1" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
