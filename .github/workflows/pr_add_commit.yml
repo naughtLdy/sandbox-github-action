@@ -23,7 +23,7 @@ jobs:
         echo `git name-rev ${PR_HEAD_SHA}`
         HASH_AND_BRANCH=`git name-rev ${PR_HEAD_SHA}`
         echo ${HASH_AND_BRANCH}
-        BRANCH=`HASH_AND_BRANCH##*remotes/origin/`
+        BRANCH=`echo "${HASH_AND_BRANCH##*remotes/origin/}"`
         echo BRANCH
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
