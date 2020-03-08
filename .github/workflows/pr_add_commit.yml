@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Create comment
       run: |
-        echo "PR Comment 1" >> comments
+        echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
         sed -i -z 's/\n/\\n/g' comments
