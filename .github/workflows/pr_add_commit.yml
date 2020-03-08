@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
     - name: Create comment
       run: |
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         git symbolic-ref --short HEAD
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
