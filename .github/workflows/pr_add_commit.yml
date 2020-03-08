@@ -1,9 +1,9 @@
-name: pr_opened
+name: pr_add_commit
 
 on:
   pull_request:
     types:
-      - opened
+      - synchronize
 
 jobs:
   comment:
@@ -11,7 +11,9 @@ jobs:
     steps:
     - name: Create comment
       run: |
-        echo "PR Opened" >> comments
+        echo "PR Comment 1" >> comments
+        echo "PR Comment 2" >> comments
+        echo "PR Comment 3" >> comments
         sed -i -z 's/\n/\\n/g' comments
 
     - name: Post comment
