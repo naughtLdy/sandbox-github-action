@@ -1,0 +1,20 @@
+name: pr_add_comment
+
+on:
+  issue_comment:
+    types:
+      - created
+      - edited
+  pull_request_review_comment:
+    types:
+      - created
+      - edited
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create comment
+      run: |
+        echo "PR Opened" >> comments
+        sed -i -z 's/\n/\\n/g' comments
