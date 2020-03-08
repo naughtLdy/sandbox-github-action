@@ -1,15 +1,13 @@
 name: pr_add_comment
 
-on:
-  pull_request_review_comment:
-    types:
-      - created
+on: issue_comment
 
 jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
     - name: Create comment
+      if: github.event.issue.pull_request
       run: |
         echo "pr_add_comment" >> comments
         echo "PR Comment 1" >> comments
@@ -21,6 +19,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         URL: ${{ github.event.pull_request.comments_url }}
+      if: github.event.issue.pull_request
       run: |
         curl -X POST \
              -H "Authorization: token ${GITHUB_TOKEN}" \
