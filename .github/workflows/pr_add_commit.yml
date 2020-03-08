@@ -15,13 +15,15 @@ jobs:
         echo ${GITHUB_REF}
         echo running on branch ${GITHUB_REF##*/}
     - name: Create comment
+      env:
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         git fetch --no-tags --depth=1 origin
         echo ${GITHUB_SHA}
         echo `git name-rev --refs ${GITHUB_SHA}`
         echo `git log`
-        echo ${{ github.event.pull_request.head.sha }}
-        echo `git name-rev --refs ${{ github.event.pull_request.head.sha }}`
+        echo ${PR_HEAD_SHA}
+        echo `git name-rev --refs ${PR_HEAD_SHA}`
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
