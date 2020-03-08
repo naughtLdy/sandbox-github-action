@@ -24,7 +24,7 @@ jobs:
         HASH_AND_BRANCH=`git name-rev ${PR_HEAD_SHA}`
         echo ${HASH_AND_BRANCH}
         BRANCH=`echo "${HASH_AND_BRANCH##*remotes/origin/}"`
-        echo BRANCH
+        echo "${BRANCH}"
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
