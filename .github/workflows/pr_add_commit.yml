@@ -19,11 +19,13 @@ jobs:
         PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         git fetch --no-tags --depth=1 origin
+        echo ${PR_HEAD_SHA}
+        echo `git name-rev ${PR_HEAD_SHA}`
         HASH_AND_BRANCH=`git name-rev ${PR_HEAD_SHA}`
         echo ${HASH_AND_BRANCH}
         echo `HASH_AND_BRANCH##*remotes/origin/`
+        echo ${HASH_AND_BRANCH##*remotes/origin/}
         echo "PR add commit" >> comments
-        echo "branch name: `HASH_AND_BRANCH##*remotes/origin/`" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
         sed -i -z 's/\n/\\n/g' comments
