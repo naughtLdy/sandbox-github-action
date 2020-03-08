@@ -19,10 +19,7 @@ jobs:
         PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         git fetch --no-tags --depth=1 origin
-        echo ${GITHUB_SHA}
-        echo `git name-rev ${GITHUB_SHA}`
-        echo `git log`
-        echo ${PR_HEAD_SHA}
+        echo "PR_HEAD_SHA : ${PR_HEAD_SHA}"
         echo `git name-rev ${PR_HEAD_SHA}`
         HASH_AND_BRANCH=`git name-rev ${PR_HEAD_SHA}`
         echo ${HASH_AND_BRANCH}
