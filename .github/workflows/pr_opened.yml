@@ -1,0 +1,26 @@
+name: pr_opened
+
+on:
+  pull_request:
+    # [opened, synchronize, reopened]
+    types:
+      - opened
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create comments
+      run: |
+        echo "PR Opened" >> comments
+        sed -i -z 's/\n/\\n/g' comments
+
+    - name: Post comment
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        URL: ${{ github.event.pull_request.comments_url }}
+      run: |
+        curl -X POST \
+             -H "Authorization: token ${GITHUB_TOKEN}" \
+             -d "{\"body\": \"$(cat comments)\"}" \
+             ${URL}
