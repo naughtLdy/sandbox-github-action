@@ -16,10 +16,7 @@ jobs:
     - name: Create comment
       run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-        git branch
-        git log
-        git reset --soft HEAD^
-        git symbolic-ref --short HEAD
+        git name-rev --refs ${GITHUB_SHA}
         echo "PR add commit" >> comments
         echo "PR Comment 2" >> comments
         echo "PR Comment 3" >> comments
