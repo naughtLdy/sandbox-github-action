@@ -2,7 +2,6 @@ name: pr_opened
 
 on:
   pull_request:
-    # [opened, synchronize, reopened]
     types:
       - opened
 

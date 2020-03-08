@@ -1,4 +1,4 @@
-name: pr_comment
+name: pr_add_commit
 
 on:
   pull_request:
